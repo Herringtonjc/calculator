@@ -1,3 +1,15 @@
+//Need variables for current operand, operator, and next operand
+const display = document.getElementById('main-display');
+const buttonNodes = document.querySelectorAll('.number-button');
+
+/* buttonNodes.forEach(function(button) {
+    button.addEventListener('click', //Add function to update display)
+}) */
+
+/* function updateDisplay() {
+
+} */
+
 function add(a, b) {
     return a + b;
 }
@@ -16,13 +28,13 @@ function divide(a, b) {
 
 function operate(operator, a, b) {
     switch(operator) {
-        case '+': console.log(add(a, b));
+        case '+': add(a, b);
         break;
-        case '-': console.log(subtract(a, b));
+        case '-': subtract(a, b);
         break;
-        case '*': console.log(multiply(a, b));
+        case '*': multiply(a, b);
         break;
-        case '/': console.log(divide(a, b));
+        case '/': divide(a, b);
         break;
     }
 }
