@@ -14,7 +14,15 @@ function divide(a, b) {
     return a / b;
 }
 
-console.log(add(1, 2));
-console.log(subtract(1, 2));
-console.log(multiply(1, 2));
-console.log(divide(1, 2));
+function operate(operator, a, b) {
+    switch(operator) {
+        case '+': console.log(add(a, b));
+        break;
+        case '-': console.log(subtract(a, b));
+        break;
+        case '*': console.log(multiply(a, b));
+        break;
+        case '/': console.log(divide(a, b));
+        break;
+    }
+}

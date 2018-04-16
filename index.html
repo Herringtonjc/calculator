@@ -8,10 +8,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="./styles/node_modules/normalize.css/normalize.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="./styles/style.css" />
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div id="content-wrapper">
+    <header>
+        <h1>Calculator</h1>
+    </header>
+    <div id="grid-container">
+        <div id="calculator-main">
+            <div id="display">
+                <div id="sub-display">0</div>
+                <div id="main-display">0</div>
+            </div>
+            <div id="button-group">
+                <div class="button" id="button-clear">Clear</div>
+                <div class="button" id="button-backspace"><i class="fas fa-arrow-left"></i></div>
+                <div class="button" id="button-divide">&#xf7;</div>
 
+                <div class="button" id="button-7">7</div>
+                <div class="button" id="button-8">8</div>
+                <div class="button" id="button-9">9</div>
+                <div class="button" id="button-multiply">&#xd7;</div>
+
+                <div class="button" id="button-4">4</div>
+                <div class="button" id="button-5">5</div>
+                <div class="button" id="button-6">6</div>
+                <div class="button" id="button-subtract">&#x2212;</div>
+
+                <div class="button" id="button-1">1</div>
+                <div class="button" id="button-2">2</div>
+                <div class="button" id="button-3">3</div>
+                <div class="button" id="button-add">&#x2b;</div>
+
+                <div class="button" id="button-0">0</div>
+                <div class="button" id="button-equals">&#x3d;</div>
+            </div>
+        </div>
     </div>
     <script src="./scripts/script.js"></script>
 </body>
