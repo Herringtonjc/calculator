@@ -1,11 +1,10 @@
-//Need variables for current operand, operator, and next operand
-const bigDisplay = document.querySelector("#main-display");
+const bigDisplay = document.querySelector("#big-display");
 const smallDisplay = document.querySelector("#small-display");
 const numberNodes = document.querySelectorAll(".number-button");
 
-let operand = "";
-let smallDisplayValue = "";
-let bigDisplayValue = "";
+let displayValue = "";
+let smallDisplayValue = ""; //Holds the value for the running calculation
+let bigDisplayValue = ""; //Holds the current operation being performed
 let operatorValue = "";
 
  numberNodes.forEach(function(button) {
@@ -18,64 +17,71 @@ let operatorValue = "";
             clearDisplay();
             break;
         case "button-backspace":
+            //Does nothing currently
             break;
         case "button-divide":
             updateOperator("/");
             break;
-        case "button-7":
-            break;
-        case "button-4":
-            break;
-        case "button-5":
-            break;
         case "button-multiply":
             updateOperator("*");
             break;
-        case "button-4":
-            break;
-        case "button-5":
-            break;
-        case "button-6":
-            break;
         case "button-subtract":
             updateOperator("-")
-            break;
-        case "button-1":
-            break;
-        case "button-2":
-            break;
-        case "button-3":
             break;
         case "button-add":
             updateOperator("+");
             break;
         case "button-0":
+        case "button-1":
+        case "button-2":
+        case "button-3":
+        case "button-4":
+        case "button-5":
+        case "button-6":
+        case "button-7":
+        case "button-8":
+        case "button-9":
+            //Updates the displays with the buttons being pressed
+            bigDisplayValue += event.target.textContent;
+            smallDisplayValue += event.target.textContent;
+            updateDisplay();
             break;
         case "button-equals":
+            operate(operatorValue, parseInt(displayValue), parseInt(bigDisplayValue));
             break;
     }
 }
 
 function updateDisplay() {
-
+    bigDisplay.textContent = bigDisplayValue;
+    smallDisplay.textContent = smallDisplayValue;
 }
 
 function updateOperator(operator) {
     if(operatorValue != "") {
-        operate(operatorValue, operand);
-        operatorValue = operator;
+        //Will perform calculation if there is an operator loaded
+        operate(operatorValue, parseInt(displayValue), parseInt(bigDisplayValue));
+        operatorValue = operator; //Sets operator to the new operator
+        displayValue = smallDisplayValue; //Stores the entire calculation
+        smallDisplayValue += operatorValue; //Append the operator
+        bigDisplayValue = ""; //Clear the display
+        updateDisplay();
     } else {
         operatorValue = operator;
+        displayValue = smallDisplayValue;
+        smallDisplayValue += operatorValue;
+        bigDisplayValue = "";
+        updateDisplay();
     }
 }
 
 function clearDisplay() {
-    if(smallDisplayValue != "" || bigDisplayValue != "") {
-        smallDisplayValue = "";
-        bigDisplayValue = "";
-        smallDisplay.textContent = smallDisplayValue;
-        bigDisplay.textContent = bigDisplayValue;
-    }
+    //Clears everything
+    displayValue = "";
+    bigDisplayValue = "";
+    smallDisplayValue = "";
+    operator = "";
+    updateDisplay();
 }
 
 function add(a, b) {
@@ -91,22 +97,56 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
-    return a / b;
+    if(b == 0) {
+        return false;
+    } else {
+        return a / b;
+    }
 }
 
 function operate(operator, a, b) {
-    switch(operator) {
-        case "+": 
-            add(a, b);
-            break;
-        case "-": 
-            subtract(a, b);
-            break;
-        case "*": 
-            multiply(a, b);
-            break;
-        case "/": 
-            divide(a, b);
-            break;
+    if(!b) {
+        bigDisplay.style.fontSize = "35px";
+        bigDisplayValue = "Black Hole Created!";
+        updateDisplay();
+        } else {
+        switch(operator) {
+            case "+": 
+                //Changes the display values to show the calculated answer
+                bigDisplayValue = add(a, b);
+                bigDisplayValue = +bigDisplayValue.toFixed(6);
+                smallDisplayValue = bigDisplayValue;
+                operatorValue = ""; //Reset operator
+                updateDisplay();
+                break;
+            case "-": 
+                bigDisplayValue = subtract(a, b);
+                bigDisplayValue = +bigDisplayValue.toFixed(6);
+                smallDisplayValue = bigDisplayValue;
+                operatorValue = "";
+                updateDisplay();
+                break;
+            case "*": 
+                bigDisplayValue = multiply(a, b);
+                bigDisplayValue = +bigDisplayValue.toFixed(6);
+                smallDisplayValue = bigDisplayValue;
+                operatorValue = "";
+                updateDisplay();
+                break;
+            case "/": 
+                bigDisplayValue = divide(a, b);
+                if(!bigDisplayValue) {
+                    bigDisplay.style.fontSize = "35px";
+                    bigDisplayValue = "Black Hole Created!";
+                    updateDisplay();
+                    break;
+                } else {
+                    bigDisplayValue = +bigDisplayValue.toFixed(6);
+                    smallDisplayValue = bigDisplayValue;
+                    operatorValue = "";
+                    updateDisplay();
+                    break;
+                }
+        }
     }
 }
