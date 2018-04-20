@@ -17,12 +17,17 @@ h1 {
     height: 100px;
     color: #fff;
     background-color: #000;
+    font-family: 'Inconsolata', monospace;
 }
 
 #main-display  {
     text-align: right;
-    font-size: 40px;
+    font-size: 50px;
     height: 100px;
+}
+
+#small-display {
+    text-align: right;
 }
 
 #button-group {
@@ -42,6 +47,17 @@ h1 {
     line-height: 55px;
     padding: 10px;
 }
+
+.function-button {
+    width: auto;
+    font-weight: bolder;
+    background-color: #d6d6d6;
+    border: 1px solid transparent;
+    text-align: center;
+    line-height: 55px;
+    padding: 10px;
+}
+
 
 #button-clear {
     grid-column: 1/3;
