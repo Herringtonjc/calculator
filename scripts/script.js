@@ -95,7 +95,7 @@ function isDecimal() {
 }
 
 function eraseDisplay() {
-    if (bigDisplayValue != "" || smallDisplayValue != "") {
+    if (bigDisplayValue != "") {
         bigDisplayValue = bigDisplayValue.slice(0, -1);
         smallDisplayValue = smallDisplayValue.slice(0, -1);
         updateDisplay();
