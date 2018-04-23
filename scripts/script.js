@@ -1,14 +1,15 @@
 const bigDisplay = document.querySelector("#big-display");
 const smallDisplay = document.querySelector("#small-display");
+const btnPeriod = document.querySelector("#button-period");
 const numberNodes = document.querySelectorAll(".number-button");
 
 let displayValue = "";
-let smallDisplayValue = ""; //Holds the value for the running calculation
-let bigDisplayValue = ""; //Holds the current operation being performed
+let smallDisplayValue = "";
+let bigDisplayValue = "";
 let operatorValue = "";
 
  numberNodes.forEach(function(button) {
-    button.addEventListener("click", () => buttonListener(event))
+    button.addEventListener("click", buttonListener);
 }) 
 
  function buttonListener(event) {
@@ -17,7 +18,7 @@ let operatorValue = "";
             clearDisplay();
             break;
         case "button-backspace":
-            //Does nothing currently
+            eraseDisplay();
             break;
         case "button-divide":
             updateOperator("/");
@@ -41,13 +42,15 @@ let operatorValue = "";
         case "button-7":
         case "button-8":
         case "button-9":
-            //Updates the displays with the buttons being pressed
             bigDisplayValue += event.target.textContent;
             smallDisplayValue += event.target.textContent;
             updateDisplay();
             break;
         case "button-equals":
-            operate(operatorValue, parseInt(displayValue), parseInt(bigDisplayValue));
+            operate(operatorValue, parseFloat(displayValue), parseFloat(bigDisplayValue));
+            break;
+        case "button-period":
+            isDecimal();
             break;
     }
 }
@@ -60,11 +63,11 @@ function updateDisplay() {
 function updateOperator(operator) {
     if(operatorValue != "") {
         //Will perform calculation if there is an operator loaded
-        operate(operatorValue, parseInt(displayValue), parseInt(bigDisplayValue));
-        operatorValue = operator; //Sets operator to the new operator
-        displayValue = smallDisplayValue; //Stores the entire calculation
-        smallDisplayValue += operatorValue; //Append the operator
-        bigDisplayValue = ""; //Clear the display
+        operate(operatorValue, parseFloat(displayValue), parseFloat(bigDisplayValue));
+        operatorValue = operator;
+        displayValue = smallDisplayValue;
+        smallDisplayValue += operatorValue;
+        bigDisplayValue = "";
         updateDisplay();
     } else {
         operatorValue = operator;
@@ -76,12 +79,27 @@ function updateOperator(operator) {
 }
 
 function clearDisplay() {
-    //Clears everything
     displayValue = "";
     bigDisplayValue = "";
     smallDisplayValue = "";
     operator = "";
     updateDisplay();
+}
+
+function isDecimal() {
+    if (!bigDisplayValue.match(/[.]/g)) {
+        bigDisplayValue += event.target.textContent;
+        smallDisplayValue += event.target.textContent;
+        updateDisplay();
+    }
+}
+
+function eraseDisplay() {
+    if (bigDisplayValue != "" || smallDisplayValue != "") {
+        bigDisplayValue = bigDisplayValue.slice(0, -1);
+        smallDisplayValue = smallDisplayValue.slice(0, -1);
+        updateDisplay();
+    }
 }
 
 function add(a, b) {
@@ -97,56 +115,45 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
-    if(b == 0) {
-        return false;
-    } else {
-        return a / b;
-    }
+    return a / b;
 }
 
 function operate(operator, a, b) {
-    if(!b) {
-        bigDisplay.style.fontSize = "35px";
-        bigDisplayValue = "Black Hole Created!";
-        updateDisplay();
-        } else {
-        switch(operator) {
-            case "+": 
-                //Changes the display values to show the calculated answer
-                bigDisplayValue = add(a, b);
-                bigDisplayValue = +bigDisplayValue.toFixed(6);
-                smallDisplayValue = bigDisplayValue;
-                operatorValue = ""; //Reset operator
+    switch(operator) {
+        case "+": 
+            bigDisplayValue = add(a, b);
+            bigDisplayValue = +bigDisplayValue.toFixed(6);
+            smallDisplayValue = bigDisplayValue;
+            operatorValue = "";
+            updateDisplay();
+            break;
+        case "-": 
+            bigDisplayValue = subtract(a, b);
+            bigDisplayValue = +bigDisplayValue.toFixed(6);
+            smallDisplayValue = bigDisplayValue;
+            operatorValue = "";
+            updateDisplay();
+            break;
+        case "*": 
+            bigDisplayValue = multiply(a, b);
+            bigDisplayValue = +bigDisplayValue.toFixed(6);
+            smallDisplayValue = bigDisplayValue;
+            operatorValue = "";
+            updateDisplay();
+            break;
+        case "/": 
+            if (b == 0) {
+                bigDisplay.style.fontSize = "35px";
+                bigDisplayValue = "Black Hole Created!";
                 updateDisplay();
                 break;
-            case "-": 
-                bigDisplayValue = subtract(a, b);
-                bigDisplayValue = +bigDisplayValue.toFixed(6);
-                smallDisplayValue = bigDisplayValue;
-                operatorValue = "";
-                updateDisplay();
-                break;
-            case "*": 
-                bigDisplayValue = multiply(a, b);
-                bigDisplayValue = +bigDisplayValue.toFixed(6);
-                smallDisplayValue = bigDisplayValue;
-                operatorValue = "";
-                updateDisplay();
-                break;
-            case "/": 
+            } else {
                 bigDisplayValue = divide(a, b);
-                if(!bigDisplayValue) {
-                    bigDisplay.style.fontSize = "35px";
-                    bigDisplayValue = "Black Hole Created!";
-                    updateDisplay();
-                    break;
-                } else {
-                    bigDisplayValue = +bigDisplayValue.toFixed(6);
-                    smallDisplayValue = bigDisplayValue;
-                    operatorValue = "";
-                    updateDisplay();
-                    break;
-                }
+                bigDisplayValue = +bigDisplayValue.toFixed(6);
+                smallDisplayValue = bigDisplayValue;
+                operatorValue = "";
+                updateDisplay();
+                break;
+            }
         }
     }
-}
