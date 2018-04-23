@@ -8,3 +8,5 @@ This was modeled after the android calculator.
 * Add eventlisteners to use keyboard controls as well as mouse clicks
 * Add ability to type in complex calculations, and receive correct answer following Order of Operations
 * Add 'scientific mode', allowing users to do more complex calculations (I.E. powers)
+* Add ability to backspace operators
+* Fix bug wherein user can create NaN by hitting equals without a second operand
