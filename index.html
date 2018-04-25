@@ -1,57 +1,62 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="icon" href="./images/icon.png" />
-    <title>Calculator</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" media="screen" href="./styles/node_modules/normalize.css/normalize.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="./styles/style.css" />
-    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="./images/icon.png" />
+  <title>Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" media="screen" href="./styles/node_modules/normalize.css/normalize.css"
+  />
+  <link rel="stylesheet" type="text/css" media="screen" href="./styles/style.css" />
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
+    crossorigin="anonymous"></script>
 </head>
+
 <body>
-    <header>
-        <h1>Calculator</h1>
-    </header>
-    <div id="grid-container">
-        <div id="calculator-main">
-            <div id="display">
-                <div id="small-display"></div>
-                <div id="big-display"></div>
-            </div>
-            <div id="button-group">
-                <!--First row of buttons-->
-                <div class="number-button" id="button-clear">Clear</div>
-                <div class="number-button" id="button-backspace"><i class="fas fa-arrow-left"></i></div>
-                <div class="number-button" id="button-divide">&#xf7;</div>
+  <header>
+    <h1>Calculator</h1>
+  </header>
+  <div id="grid-container">
+    <div id="calculator-main">
+      <div id="display">
+        <div id="small-display"></div>
+        <div id="big-display"></div>
+      </div>
+      <div id="button-group">
+        <!--First row of buttons-->
+        <div class="number-button" id="button-clear">Clear</div>
+        <div class="number-button" id="button-backspace"><i class="fas fa-arrow-left"></i></div>
+        <div class="number-button" id="button-divide">&#xf7;</div>
 
-                <!--Second row of buttons-->
-                <div class="number-button" id="button-7">7</div>
-                <div class="number-button" id="button-8">8</div>
-                <div class="number-button" id="button-9">9</div>
-                <div class="number-button" id="button-multiply">&#xd7;</div>
+        <!--Second row of buttons-->
+        <div class="number-button" id="button-7">7</div>
+        <div class="number-button" id="button-8">8</div>
+        <div class="number-button" id="button-9">9</div>
+        <div class="number-button" id="button-multiply">&#xd7;</div>
 
-                <!--Third row of buttons-->
-                <div class="number-button" id="button-4">4</div>
-                <div class="number-button" id="button-5">5</div>
-                <div class="number-button" id="button-6">6</div>
-                <div class="number-button" id="button-subtract"">&#x2212;</div>
+        <!--Third row of buttons-->
+        <div class="number-button" id="button-4">4</div>
+        <div class="number-button" id="button-5">5</div>
+        <div class="number-button" id="button-6">6</div>
+        <div class="number-button" id="button-subtract">&#x2212;</div>
 
-                <!--Fourth row of buttons-->
-                <div class="number-button" id="button-1"">1</div>
-                <div class="number-button" id="button-2"">2</div>
-                <div class="number-button" id="button-3"">3</div>
-                <div class="number-button" id="button-add"">&#x2b;</div>
+        <!--Fourth row of buttons-->
+        <div class="number-button" id="button-1">1</div>
+        <div class="number-button" id="button-2">2</div>
+        <div class="number-button" id="button-3">3</div>
+        <div class="number-button" id="button-add">&#x2b;</div>
 
-                <!--Final row of buttons-->
-                <div class="number-button" id="button-0"">0</div>
-                <div class="number-button" id="button-period">&#46;</div>
-                <div class="number-button" id="button-equals"">&#x3d;</div>
-            </div>
-        </div>
+        <!--Final row of buttons-->
+        <div class="number-button" id="button-0">0</div>
+        <div class="number-button" id="button-period">&#46;</div>
+        <div class="number-button" id="button-equals">&#x3d;</div>
+      </div>
     </div>
-    <script src="./scripts/script.js"></script>
+  </div>
+  <script src="./scripts/script.js"></script>
 </body>
+
 </html>

@@ -8,31 +8,34 @@ h1 {
 }
 
 #calculator-main {
-    border: 1px solid rgb(0, 0, 0);
+    /*border: 1px solid #000;*/
     width: 450px;
     height: 493px;
 }
 
 #display {
     height: 100px;
-    color: #fff;
-    background-color: #000;
+    color: #000;
+    background-color: #fff;
     font-family: 'Inconsolata', monospace;
+    overflow: hidden;
 }
 
 #big-display  {
     text-align: right;
-    font-size: 50px;
+    font-size: 75px;
     height: 100px;
 }
 
 #small-display {
     text-align: right;
+    font-size: 25px;
 }
 
 #button-group {
     display: grid;
     background-color: #494949;
+    border: 1px solid #000;
     grid-gap: 2px;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(5, 1fr);
@@ -42,7 +45,8 @@ h1 {
     width: auto;
     font-weight: bolder;
     font-size: 20px;
-    background-color: #d6d6d6;
+    background-color: #2d2d2d;
+    color: #fff;
     border: 1px solid transparent;
     text-align: center;
     line-height: 55px;
@@ -59,4 +63,5 @@ h1 {
 
 #button-divide, #button-multiply, #button-add, #button-subtract, #button-equals {
     background-color: #ff8f19;
+    color: #000;
 }
