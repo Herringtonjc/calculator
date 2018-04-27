@@ -1,17 +1,25 @@
+/*TODO:
+ Add keyboard support
+*/
+
+/*////////////////////////////////Selectors///////////////////////////////////*/
 const bigDisplay = document.querySelector("#big-display");
 const smallDisplay = document.querySelector("#small-display");
 const btnPeriod = document.querySelector("#button-period");
 const numberNodes = document.querySelectorAll(".number-button");
 
+/*////////////////////////////////Globals/////////////////////////////////////*/
 let displayValue = "";
 let smallDisplayValue = "";
 let bigDisplayValue = "";
 let doneOperating = false;
 
+/*////////////////////////////////Event Listeners/////////////////////////////*/
 numberNodes.forEach(function(button) {
     button.addEventListener("click", buttonListener);
 })
 
+/*////////////////////////////////Functions///////////////////////////////////*/
 function buttonListener(event) {
     switch (event.target.getAttribute("id")) {
         case "button-clear":
@@ -82,7 +90,7 @@ function clearDisplay() {
 function updateOperator(operator) {
     doneOperating = false;
     displayValue += operator;
-    bigDisplayValue += event.target.textContent;
+    bigDisplayValue = "";
     smallDisplayValue += event.target.textContent;
     updateDisplay();
 }
@@ -91,6 +99,7 @@ function isDecimal() {
     if (!bigDisplayValue.match(/[.]/g)) {
         bigDisplayValue += event.target.textContent;
         smallDisplayValue += event.target.textContent;
+        displayValue += event.target.textContent;
         updateDisplay();
     }
 }
